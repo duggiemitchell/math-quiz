@@ -1,0 +1,51 @@
+body {
+  font-family: "Roboto";
+  margin: 0;
+}
+h1 {
+  font-family: "Josefin Sans";
+  margin: 2px 2px;
+}
+button {
+  display: block;
+  padding: 0.46em 1.6em;
+  border: 0.1em solid #000000;
+  margin: 0 0.2em 0.2em 0;
+  border-radius: 0.12em;
+  color: #000000;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  background-color: #ffffff;
+}
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+  box-shadow: 0 3px 2px -2px grey;
+  padding: 0.67em 0.67em;
+  height: 1em;
+}
+.quiz-hero {
+  display: block;
+}
+.quiz-hero h1 {
+  padding-right: 10px;
+}
+
+.quiz-main {
+  max-width: 980px;
+  margin: 1.875em 1em;
+}
+
+@media (min-width: 550px) {
+  .quiz-hero {
+    display: flex;
+    align-items: baseline;
+  }
+  .quiz-hero button {
+    display: block;
+  }
+}
+/*
+span {
+	font-family: 'Josefin Sans';
+} */
