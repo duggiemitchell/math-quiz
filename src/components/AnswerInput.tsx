@@ -18,13 +18,7 @@ const AnswerInput = ({ id, validateAnswer, answerKey }: Props) => {
   };
 
   return (
-    <input
-      required
-      id={id}
-      type="number"
-      onChange={handleChange}
-      onBlur={validate}
-    />
+    <input id={id} type="number" onChange={handleChange} onBlur={validate} />
   );
 };
 
