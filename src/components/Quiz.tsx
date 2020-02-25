@@ -25,7 +25,10 @@ const Quiz = () => {
       {user ? (
         <>
           <nav className="quiz-header">
-            <UserIcon />
+            <div className="quiz-header-user">
+              <UserIcon />
+              <SetUser set={saveUser} type="edit" />
+            </div>
             {inProgress && <Timer start={inProgress} />}
           </nav>
           <main className="quiz-main">
@@ -44,7 +47,7 @@ const Quiz = () => {
           </main>
         </>
       ) : (
-        <SetUser set={saveUser} />
+        <SetUser set={saveUser} type="add" />
       )}
     </>
   );
