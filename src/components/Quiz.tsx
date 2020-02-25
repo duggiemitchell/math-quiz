@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 import Questions from "./Questions";
-import User from "./User";
 import Timer from "./Timer";
+import UserIcon from "./user/Icon";
+import SetUser from "./user/Set";
+import { useLocalStorage } from "../utils/hooks";
 
 const Quiz = () => {
   const [inProgress, setInprogress] = useState(false);
-  const user = "Erica"; // @todo make user an input
+  const [user, setUser] = useLocalStorage("user", null);
 
   const start = () => {
     if (inProgress) {
@@ -15,12 +17,15 @@ const Quiz = () => {
     setInprogress(true);
   };
 
+  const saveUser = (user: string) => {
+    setUser(user);
+  };
   return (
     <>
       {user ? (
         <>
           <nav className="quiz-header">
-            <User />
+            <UserIcon />
             {inProgress && <Timer start={inProgress} />}
           </nav>
           <main className="quiz-main">
@@ -39,7 +44,7 @@ const Quiz = () => {
           </main>
         </>
       ) : (
-        <div>enter your name...</div>
+        <SetUser set={saveUser} />
       )}
     </>
   );

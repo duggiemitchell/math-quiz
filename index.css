@@ -15,7 +15,28 @@ button {
   color: #000000;
   text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
   background-color: #ffffff;
+  min-width: 100px;
 }
+.quiz-set-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin: 10% 0;
+  min-height: 200px;
+}
+.quiz-set-user label {
+  font-size: 1.5em;
+  flex: 1;
+}
+.quiz-set-user input {
+  width: 50%;
+  height: 40px;
+  margin-bottom: 45px;
+}
+
 .quiz-header {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const User = () => (
+const UserIcon = () => (
   <svg
     version="1.1"
     id="Capa_1"
@@ -22,4 +22,4 @@ const User = () => (
   </svg>
 );
 
-export default User;
+export default UserIcon;
