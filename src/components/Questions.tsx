@@ -10,7 +10,7 @@ interface QuizProps {
 const Questions = ({ started }: QuizProps) => {
   const [quiz, setQuiz] = useState([]);
   const [qaKey, setQaKey] = useState({});
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(null);
 
   const quizInProgress = started && quiz;
   const passingScore = score > FAILED_SCORE;
@@ -60,9 +60,11 @@ const Questions = ({ started }: QuizProps) => {
     }
   }, []);
 
+  const hasScore = score != null;
+  console.log(score);
   return (
     <>
-      {score ? (
+      {hasScore ? (
         <div>
           <div>You scored: {score}%</div>
           <div>{nextSteps}</div>
