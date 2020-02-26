@@ -8,6 +8,7 @@ interface Props {
 }
 const AnswerInput = ({ id, validateAnswer, answerKey }: Props) => {
   const [answer, setAnswer] = useState("");
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setAnswer(value);

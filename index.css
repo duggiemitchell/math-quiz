@@ -52,8 +52,9 @@ input[type="number"] {
   font-size: 0.3em;
   margin-left: 10px;
 }
-.quiz-edit-user span {
+.quiz-edit-user-link {
   cursor: pointer;
+  color: blue;
 }
 .quiz-header {
   display: flex;

@@ -58,7 +58,9 @@ const SetUser = ({ set, type }: Props) => {
         {isEditing ? (
           <input onBlur={reset} onChange={handleEdit} ref={editEl} />
         ) : (
-          <span onClick={edit}>Edit</span>
+          <span onClick={edit} className="quiz-edit-user-link">
+            Edit
+          </span>
         )}
       </form>
     ]

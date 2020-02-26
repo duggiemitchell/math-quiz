@@ -7,19 +7,38 @@ import SetUser from "./user/Set";
 import { useLocalStorage } from "../utils/hooks";
 
 const Quiz = () => {
-  const [inProgress, setInprogress] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [user, setUser] = useLocalStorage("user", null);
+  const [quizComplete, setQuizComplete] = useState(false);
 
   const start = () => {
     if (inProgress) {
       return;
     }
-    setInprogress(true);
+    if (quizComplete) {
+      setQuizComplete(false);
+    }
+    setInProgress(true);
   };
-
   const saveUser = (user: string) => {
     setUser(user);
   };
+  const stop = () => {
+    setInProgress(false);
+    setQuizComplete(true);
+  };
+  /* @todo
+    hide timer when complete...
+    hide setUser when inprocess...
+  */
+
+  if (quizComplete) {
+    return (
+      <div>
+        Time is up! <button onClick={start}>Try again!</button>
+      </div>
+    );
+  }
   return (
     <>
       {user ? (
@@ -29,7 +48,7 @@ const Quiz = () => {
               <UserIcon />
               <SetUser set={saveUser} type="edit" />
             </div>
-            {inProgress && <Timer start={inProgress} />}
+            {inProgress && <Timer start={inProgress} stop={stop} />}
           </nav>
           <main className="quiz-main">
             {inProgress ? (

@@ -7,6 +7,7 @@ import { FAILED_SCORE } from "../utils/constants";
 interface QuizProps {
   started: Boolean;
 }
+
 const Questions = ({ started }: QuizProps) => {
   const [quiz, setQuiz] = useState([]);
   const [qaKey, setQaKey] = useState({});
@@ -26,12 +27,12 @@ const Questions = ({ started }: QuizProps) => {
       return { ...prevState, ...score };
     });
   };
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const score = await calculateScore(qaKey);
     setScore(score);
   };
-  const resetQuiz = () => {
+  const retry = () => {
     setScore(null);
     doFetchQuiz();
   };
@@ -45,12 +46,12 @@ const Questions = ({ started }: QuizProps) => {
   const nextSteps = passingScore ? (
     <>
       <span>Move to the next level!</span>
-      <button onClick={resetQuiz}>Next Level</button>
+      <button onClick={retry}>Next Level</button>
     </>
   ) : (
     <>
       <span>Uh oh, that's not a passing score :(</span>
-      <button onClick={resetQuiz}>Try again</button>
+      <button onClick={retry}>Try again</button>
     </>
   );
 
@@ -61,35 +62,33 @@ const Questions = ({ started }: QuizProps) => {
   }, []);
 
   const hasScore = score != null;
-  console.log(score);
+  if (hasScore) {
+    return (
+      <div>
+        <div>You scored: {score}%</div>
+        <div>{nextSteps}</div>
+      </div>
+    );
+  }
   return (
-    <>
-      {hasScore ? (
-        <div>
-          <div>You scored: {score}%</div>
-          <div>{nextSteps}</div>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <ul className="quiz-questions">
-            {quizInProgress &&
-              quiz.map(({ question, answer, id }) => {
-                return (
-                  <li key={id}>
-                    {question}{" "}
-                    <AnswerInput
-                      id={id}
-                      validateAnswer={validateAnswer}
-                      answerKey={answer}
-                    />
-                  </li>
-                );
-              })}
-            <button type="submit">complete</button>
-          </ul>
-        </form>
-      )}
-    </>
+    <form onSubmit={handleSubmit}>
+      <ul className="quiz-questions">
+        {quizInProgress &&
+          quiz.map(({ question, answer, id }) => {
+            return (
+              <li key={id}>
+                {question}{" "}
+                <AnswerInput
+                  id={id}
+                  validateAnswer={validateAnswer}
+                  answerKey={answer}
+                />
+              </li>
+            );
+          })}
+        <button type="submit">complete</button>
+      </ul>
+    </form>
   );
 };
 
