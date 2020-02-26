@@ -30,10 +30,6 @@ const Questions = ({ started }: QuizProps) => {
     e.preventDefault();
     const score = await calculateScore(qaKey);
     setScore(score);
-    /* @todo 
-    increment attempt level ?
-    allow another attempt ?
-    */
   };
   const resetQuiz = () => {
     setScore(null);

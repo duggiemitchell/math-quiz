@@ -4,7 +4,10 @@ export const fetchQuiz = async () => {
   const res = await fetch("http://localhost:4000/qa");
   const qa = await res.json();
 
-  return qa.slice(0, MAX_QUESTIONS); // @todo make random...
+  const quiz = qa
+    .sort(() => Math.random() - Math.random())
+    .slice(0, MAX_QUESTIONS);
+  return quiz;
 };
 
 export const calculateScore = async result => {
