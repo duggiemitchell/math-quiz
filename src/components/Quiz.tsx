@@ -17,7 +17,7 @@ const Quiz = () => {
     if (!inProgress) {
       setInProgress(true);
     }
-    setTimer(10);
+    setTimer(MAX_TIME);
     setShowTimer(true);
   };
   const saveUser = (user: string) => {
@@ -29,6 +29,11 @@ const Quiz = () => {
     setTimer(null);
   };
   const timeIsExpired = inProgress && timer === 0;
+
+  useEffect(() => {
+    /* reset quiz session if user has changed */
+    setInProgress(false);
+  }, [user]);
 
   if (timeIsExpired) {
     return (

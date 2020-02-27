@@ -74,7 +74,6 @@ const Questions = ({ started, handleComplete, handleRetry }: QuizProps) => {
       </div>
     );
   }
-  return (
     <form onSubmit={handleSubmit}>
       <ul className="quiz-questions">
         {quizInProgress &&
