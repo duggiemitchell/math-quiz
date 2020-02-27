@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { initiateTimer } from "../utils/api";
 
 export const useLocalStorage = (key: string, initVal: string | null) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -23,4 +24,22 @@ export const useLocalStorage = (key: string, initVal: string | null) => {
     }
   };
   return [storedValue, setValue];
+};
+
+export const useTimer = start => {
+  const [timer, setTimer] = useState(null);
+  // @todo make display friendly...
+  useEffect(() => {
+    if (start && timer) {
+      const interval = setInterval(() => {
+        setTimer(timer - 1);
+      }, 1000);
+
+      if (timer === 0) {
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    }
+  });
+  return [timer, setTimer];
 };

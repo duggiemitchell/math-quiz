@@ -20,3 +20,7 @@ export const calculateScore = async result => {
   }
   return (correct.length / max) * 100;
 };
+
+export const initiateTimer = (date, minutes) => {
+  return new Date(date.getTime() + minutes * 60000);
+};

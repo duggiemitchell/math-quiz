@@ -6,9 +6,11 @@ import { QA } from "../utils/types";
 import { FAILED_SCORE } from "../utils/constants";
 interface QuizProps {
   started: Boolean;
+  handleComplete: () => void;
+  handleRetry: () => void;
 }
 
-const Questions = ({ started }: QuizProps) => {
+const Questions = ({ started, handleComplete, handleRetry }: QuizProps) => {
   const [quiz, setQuiz] = useState([]);
   const [qaKey, setQaKey] = useState({});
   const [score, setScore] = useState(null);
@@ -31,10 +33,12 @@ const Questions = ({ started }: QuizProps) => {
     e.preventDefault();
     const score = await calculateScore(qaKey);
     setScore(score);
+    handleComplete();
   };
   const retry = () => {
     setScore(null);
     doFetchQuiz();
+    handleRetry();
   };
   const doFetchQuiz = useCallback(async () => {
     const questions = await fetchQuiz();
