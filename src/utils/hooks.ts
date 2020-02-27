@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { initiateTimer } from "../utils/api";
 
 export const useLocalStorage = (key: string, initVal: string | null) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -13,7 +12,7 @@ export const useLocalStorage = (key: string, initVal: string | null) => {
     }
   });
 
-  const setValue = value => {
+  const setValue = (value: any) => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
@@ -26,7 +25,7 @@ export const useLocalStorage = (key: string, initVal: string | null) => {
   return [storedValue, setValue];
 };
 
-export const useTimer = start => {
+export const useTimer = (start: boolean) => {
   const [timer, setTimer] = useState(null);
   // @todo make display friendly...
   useEffect(() => {

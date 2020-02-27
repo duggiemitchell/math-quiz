@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import AnswerInput from "./AnswerInput";
-import { fetchQuiz, calculateScore } from "../utils/api";
-import { QA } from "../utils/types";
-import { FAILED_SCORE } from "../utils/constants";
+import { fetchQuiz, calculateScore } from "../../utils/api";
+import { QA } from "../../utils/types";
+import { FAILED_SCORE } from "../../utils/constants";
+
 interface QuizProps {
   started: Boolean;
   handleComplete: () => void;
   handleRetry: () => void;
 }
 
-const Questions = ({ started, handleComplete, handleRetry }: QuizProps) => {
+const QuizQuestions = ({ started, handleComplete, handleRetry }: QuizProps) => {
   const [quiz, setQuiz] = useState([]);
   const [qaKey, setQaKey] = useState({});
   const [score, setScore] = useState(null);
@@ -96,4 +97,4 @@ const Questions = ({ started, handleComplete, handleRetry }: QuizProps) => {
   );
 };
 
-export default Questions;
+export default QuizQuestions;

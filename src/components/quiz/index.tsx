@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import Questions from "./Questions";
-import UserIcon from "./user/Icon";
-import SetUser from "./user/Set";
-import { useLocalStorage, useTimer } from "../utils/hooks";
-import { MAX_TIME } from "../utils/constants";
-import { initiateTimer } from "../utils/api";
+import QuizQuestions from "./Questions";
+import UserIcon from "../user/Icon";
+import SetUser from "../user/Set";
+
+import { MAX_TIME } from "../../utils/constants";
+import { useLocalStorage, useTimer } from "../../utils/hooks";
 
 const Quiz = () => {
   const [inProgress, setInProgress] = useState(false);
@@ -56,7 +56,7 @@ const Quiz = () => {
           </nav>
           <main className="quiz-main">
             {inProgress ? (
-              <Questions
+              <QuizQuestions
                 started={inProgress}
                 handleComplete={complete}
                 handleRetry={start}

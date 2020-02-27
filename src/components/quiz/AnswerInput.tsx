@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import { QA } from "../utils/types";
+import { QA } from "../../utils/types";
 
 interface Props {
   id: string;
